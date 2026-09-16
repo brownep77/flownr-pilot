@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Flow NR — Classes & calendars in Norwich</title>
-  <meta name="description" content="Pilot directory of yoga, gym, pilates and leisure classes across Norwich and the NR postcodes, with public calendars. Free to list for three months." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;650&display=swap" rel="stylesheet" />
@@ -13,207 +12,121 @@
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top">
-        <span class="mark">nr</span>
-        <span class="brand-name">Flow <span>NR</span></span>
-      </a>
+      <a class="brand" href="#top"><span class="mark">nr</span><span class="brand-name">Flow <span>NR</span></span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
       <nav class="nav-links" id="navLinks">
-        <a href="#find" data-i="nav_find">Find a class</a>
+        <a href="#find">Find a class</a>
         <a href="#calendar">Calendar</a>
-        <a href="#events" data-i="nav_events">Events</a>
-        <a href="#how" data-i="nav_how">How it works</a>
+        <a href="#events">Events</a>
+        <a href="#how">How it works</a>
         <select class="lang" id="lang" aria-label="Language">
-          <optgroup label="Norwich & Europe">
-            <option value="en">English</option>
-            <option value="pl">Polski</option>
-            <option value="uk">Українська</option>
-            <option value="ru">Русский</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-            <option value="pt">Português</option>
-            <option value="it">Italiano</option>
-          </optgroup>
-          <optgroup label="Most spoken worldwide">
-            <option value="zh">中文（简体）</option>
-            <option value="zh-TW">中文（繁體）</option>
-            <option value="hi">हिन्दी</option>
-            <option value="ar">العربية</option>
-            <option value="bn">বাংলা</option>
-            <option value="ur">اردو</option>
-            <option value="id">Bahasa Indonesia</option>
-            <option value="ja">日本語</option>
-            <option value="tr">Türkçe</option>
-            <option value="vi">Tiếng Việt</option>
-            <option value="ko">한국어</option>
-          </optgroup>
+          <option value="en">English</option>
+          <option value="pl">Polski</option>
+          <option value="uk">Українська</option>
+          <option value="ru">Русский</option>
+          <option value="zh">中文（简体）</option>
         </select>
-        <a class="cta" href="#list" data-i="cta_list">List a class free</a>
+        <a class="cta" href="#list">List a class free</a>
       </nav>
     </div>
   </header>
-
   <main id="top">
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <p class="kicker" data-i="kicker">Pilot · Norwich & NR postcodes</p>
-          <h1 data-i="h1">Every class in Norwich, on one calm map.</h1>
-          <p class="lede" data-i="lede">Flow NR gathers studios, independent teachers, gyms and leisure centres across the NR postcodes. Students browse free. Teachers list free for three months.</p>
+          <p class="kicker">Pilot · Norwich & NR postcodes</p>
+          <h1>Every class in Norwich, on one calm map.</h1>
+          <p class="lede">Flow NR gathers studios, independent teachers, gyms and leisure centres across the NR postcodes.</p>
           <div class="hero-actions">
-            <a class="cta" href="#find" data-i="cta_browse">Browse Norwich classes</a>
-            <a class="cta ghost" href="#list" data-i="cta_list">List a class free</a>
+            <a class="cta" href="#find">Browse Norwich classes</a>
+            <a class="cta ghost" href="#list">List a class free</a>
           </div>
           <div class="stats">
-            <div><strong id="statPlaces">32</strong><span data-i="stat1">Places mapped</span></div>
-            <div><strong>NR1–NR14</strong><span data-i="stat2">NR districts</span></div>
-            <div><strong>6</strong><span data-i="stat3">Languages</span></div>
+            <div><strong id="statPlaces">32</strong><span>Places mapped</span></div>
+            <div><strong>NR1–NR14</strong><span>NR districts</span></div>
+            <div><strong>20</strong><span>Languages</span></div>
           </div>
         </div>
         <aside class="hero-card">
-          <h3 data-i="card_title">Pilot offer for teachers</h3>
+          <h3>Pilot offer for teachers</h3>
           <ul class="mini-list">
-            <li><span data-i="card_1">Free listing</span><span class="chip" data-i="card_1b">First 3 months</span></li>
-            <li><span data-i="card_2">Then from £9 / month</span><span class="chip" data-i="card_2b">Cancel anytime</span></li>
-            <li><span data-i="card_3">Events included</span><span class="chip" data-i="card_3b">Workshops & retreats</span></li>
+            <li><span>Free listing</span><span class="chip">First 3 months</span></li>
+            <li><span>Then from £9 / month</span><span class="chip">Cancel anytime</span></li>
+            <li><span>Events included</span><span class="chip">Workshops & retreats</span></li>
           </ul>
         </aside>
       </div>
     </section>
-
     <section id="find">
       <div class="wrap">
         <div class="section-head">
-          <h2 data-i="find_h">Find a class</h2>
-          <p class="muted" data-i="find_p">Filter by style, area or venue type. Times change weekly — always confirm on the provider’s own booking page.</p>
+          <h2>Find a class</h2>
+          <p class="muted">Filter by style, area or venue type.</p>
         </div>
         <div class="filters">
-          <input id="q" type="search" data-iph="search_ph" placeholder="Search teacher, studio or postcode" />
+          <input id="q" type="search" placeholder="Search teacher, studio or postcode" />
           <select id="type"></select>
           <select id="area"></select>
         </div>
         <div class="filter-pills" id="pills"></div>
         <p class="muted" style="margin-bottom:12px"><span id="count"></span> listings</p>
         <div class="grid" id="cards"></div>
-        <p class="disclaimer">Compiled September 2026 from public studio, council and gym pages for this pilot concept. Claim a listing to correct names, times and access notes. Booking stays on each provider’s own site. Gym timetables change weekly — treat the calendar as a snapshot and confirm in the provider app.</p>
       </div>
     </section>
-
     <section id="calendar" style="padding-top:0">
       <div class="wrap">
         <div class="section-head">
-          <h2>This week’s public calendar</h2>
-          <p class="muted">A working board of yoga, pilates, gym and leisure slots we could pin to a day and time. Chain gyms publish live grids in their apps; those rows are a recent public snapshot.</p>
+          <h2>Monthly class calendar</h2>
+          <p class="muted">Weekly studio and gym slots are rolled out across the month. A Monday scan refreshes public timetables.</p>
         </div>
-        <div class="filter-pills" id="dayPills"></div>
-        <div class="cal-wrap">
+        <div class="month-bar">
+          <button type="button" class="pill" id="calPrev">←</button>
+          <h3 id="calTitle"></h3>
+          <button type="button" class="pill" id="calNext">→</button>
+          <p class="muted" id="calStamp"></p>
+        </div>
+        <div class="month-grid" id="monthGrid"></div>
+        <div class="cal-wrap" style="margin-top:16px">
           <table class="cal" id="calTable"></table>
         </div>
       </div>
     </section>
-
     <section id="events" style="padding-top:0">
       <div class="wrap">
-        <div class="section-head">
-          <h2 data-i="events_h">Yoga-type events</h2>
-          <p class="muted" data-i="events_p">Workshops, sound baths, kirtan, teacher training and retreats sit beside weekly classes.</p>
-        </div>
+        <div class="section-head"><h2>Yoga-type events</h2></div>
         <div class="events" id="eventGrid"></div>
       </div>
     </section>
-
     <section id="how">
       <div class="wrap">
-        <div class="section-head">
-          <h2 data-i="how_h">How the Norwich pilot works</h2>
-        </div>
+        <div class="section-head"><h2>How the Norwich pilot works</h2></div>
         <div class="how">
-          <article class="step"><div class="num">01</div><h3 data-i="how_1t">We map the city</h3><p data-i="how_1"></p></article>
-          <article class="step"><div class="num">02</div><h3 data-i="how_2t">Teachers list free</h3><p data-i="how_2"></p></article>
-          <article class="step"><div class="num">03</div><h3 data-i="how_3t">A small fee after</h3><p data-i="how_3"></p></article>
+          <article class="step"><div class="num">01</div><h3>We map the city</h3><p data-i="how_1"></p></article>
+          <article class="step"><div class="num">02</div><h3>Teachers list free</h3><p data-i="how_2"></p></article>
+          <article class="step"><div class="num">03</div><h3>A small fee after</h3><p data-i="how_3"></p></article>
         </div>
       </div>
     </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <h2 data-i="price_h">Simple pricing after the free quarter</h2>
-        </div>
-        <div class="pricing">
-          <article class="price featured">
-            <p class="kicker" style="color:#e8d5a8" data-i="price_free">Pilot</p>
-            <div class="amount">£0</div>
-            <p>Days 1–90 for every teacher, studio, gym class and community hall in an NR postcode.</p>
-            <ul>
-              <li>Profile, styles, venue, map pin</li>
-              <li>Weekly classes + events</li>
-              <li>Link out to your own booking page</li>
-            </ul>
-          </article>
-          <article class="price">
-            <p class="kicker" data-i="price_std">Standard</p>
-            <div class="amount">£9<span style="font-size:1rem">/mo</span></div>
-            <ul>
-              <li>Keep the listing live</li>
-              <li>Edit anytime</li>
-              <li>Shown in search & filters</li>
-              <li>Community and leisure venues: £5/mo</li>
-            </ul>
-          </article>
-          <article class="price">
-            <p class="kicker" data-i="price_feat">Featured</p>
-            <div class="amount">£19<span style="font-size:1rem">/mo</span></div>
-            <ul>
-              <li>Top of local results</li>
-              <li>Homepage highlight</li>
-              <li>Extra event slots</li>
-              <li>Optional translated profile</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <h2 data-i="lang_h">Built to be translated</h2>
-          <p class="muted" data-i="lang_p"></p>
-        </div>
-        <div class="langs" id="langGrid"></div>
-      </div>
-    </section>
-
     <section id="list">
       <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
         <div>
-          <h2 data-i="form_h">Claim or add a listing</h2>
-          <p class="muted" data-i="form_p"></p>
+          <h2>Claim or add a listing</h2>
+          <p class="muted">Free for three months from the day you join the pilot.</p>
         </div>
         <form class="form" id="listForm">
-          <input required name="name" data-iph="name" placeholder="Name" />
-          <input required type="email" name="email" data-iph="email" placeholder="Email" />
-          <input required name="place" data-iph="place" placeholder="Studio / teacher name" />
-          <input name="where" data-iph="where" placeholder="Venue & postcode" />
+          <input required name="name" placeholder="Name" />
+          <input required type="email" name="email" placeholder="Email" />
+          <input required name="place" placeholder="Studio / teacher name" />
+          <input name="where" placeholder="Venue & postcode" />
           <textarea name="about" rows="4" placeholder="Styles, days, access notes"></textarea>
-          <button class="cta clay" type="submit" data-i="send">Request a free listing</button>
+          <button class="cta clay" type="submit">Request a free listing</button>
           <p class="note" id="formMsg"></p>
         </form>
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <strong>Flow NR</strong>
-        <p data-i="foot"></p>
-      </div>
-      <p>Norwich pilot · 2026</p>
-    </div>
-  </footer>
+  <footer><div class="wrap foot"><div><strong>Flow NR</strong><p>Norwich pilot concept.</p></div><p>Norwich pilot · 2026</p></div></footer>
   <script src="app.js"></script>
+  <script src="month-cal.js"></script>
 </body>
 </html>
