@@ -4,16 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Flow NR — Classes & calendars in Norwich</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;650&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/brownep77/flownr-pilot@main/styles.css" />
+  <style>
+    .month-bar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+    .month-grid { display:grid !important; grid-template-columns:repeat(7, minmax(0,1fr)) !important; gap:4px; width:100%; }
+    .month-grid .dow { font-size:.7rem; text-transform:uppercase; text-align:center; color:#2d4a3c; padding:4px 2px; }
+    .day-cell { display:flex; flex-direction:column; align-items:flex-start; gap:4px; min-height:72px; width:100%; background:#fff; border:1px solid #c9ddd4; border-radius:10px; padding:6px; cursor:pointer; font:inherit; color:inherit; overflow:hidden; }
+    .day-cell.out { opacity:.38; }
+    .day-cell.on { border-color:#0f3d2e; background:#e8f3ee; }
+    .day-cell.today .day-num { background:#0f3d2e; color:#fff; }
+    .day-num { width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-size:.78rem; font-weight:650; }
+    .day-slots { display:flex; flex-wrap:wrap; gap:3px; width:100%; }
+    .slot { display:inline-block; font-size:.68rem; color:#08261c; background:#e8f3ee; border-radius:999px; padding:1px 6px; white-space:nowrap; }
+    .more-slots { font-size:.68rem; color:#165c45; }
+    .cal-wrap { overflow-x:auto; }
+    .cal { width:100%; border-collapse:collapse; }
+    .cal th, .cal td { padding:8px 10px; border-bottom:1px solid #c9ddd4; text-align:left; }
+  </style>
 </head>
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top"><span class="mark">nr</span><span class="brand-name">Flow <span>NR</span></span></a>
-      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
       <nav class="nav-links" id="navLinks">
         <a href="#find">Find a class</a>
         <a href="#calendar">Calendar</a>
@@ -24,7 +36,7 @@
           <option value="pl">Polski</option>
           <option value="uk">Українська</option>
           <option value="ru">Русский</option>
-          <option value="zh">中文（简体）</option>
+          <option value="zh">中文</option>
         </select>
         <a class="cta" href="#list">List a class free</a>
       </nav>
@@ -36,48 +48,19 @@
         <div>
           <p class="kicker">Pilot · Norwich & NR postcodes</p>
           <h1>Every class in Norwich, on one calm map.</h1>
-          <p class="lede">Flow NR gathers studios, independent teachers, gyms and leisure centres across the NR postcodes.</p>
+          <p class="lede">Studios, independent teachers, gyms and leisure centres across the NR postcodes.</p>
           <div class="hero-actions">
-            <a class="cta" href="#find">Browse Norwich classes</a>
+            <a class="cta" href="#calendar">Open the month calendar</a>
             <a class="cta ghost" href="#list">List a class free</a>
           </div>
-          <div class="stats">
-            <div><strong id="statPlaces">32</strong><span>Places mapped</span></div>
-            <div><strong>NR1–NR14</strong><span>NR districts</span></div>
-            <div><strong>20</strong><span>Languages</span></div>
-          </div>
         </div>
-        <aside class="hero-card">
-          <h3>Pilot offer for teachers</h3>
-          <ul class="mini-list">
-            <li><span>Free listing</span><span class="chip">First 3 months</span></li>
-            <li><span>Then from £9 / month</span><span class="chip">Cancel anytime</span></li>
-            <li><span>Events included</span><span class="chip">Workshops & retreats</span></li>
-          </ul>
-        </aside>
       </div>
     </section>
-    <section id="find">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Find a class</h2>
-          <p class="muted">Filter by style, area or venue type.</p>
-        </div>
-        <div class="filters">
-          <input id="q" type="search" placeholder="Search teacher, studio or postcode" />
-          <select id="type"></select>
-          <select id="area"></select>
-        </div>
-        <div class="filter-pills" id="pills"></div>
-        <p class="muted" style="margin-bottom:12px"><span id="count"></span> listings</p>
-        <div class="grid" id="cards"></div>
-      </div>
-    </section>
-    <section id="calendar" style="padding-top:0">
+    <section id="calendar" class="calendar-band">
       <div class="wrap">
         <div class="section-head">
           <h2>Monthly class calendar</h2>
-          <p class="muted">Weekly studio and gym slots are rolled out across the month. A Monday scan refreshes public timetables.</p>
+          <p class="muted">Each square is one day. Click a day to see full class names underneath — not inside the square.</p>
         </div>
         <div class="month-bar">
           <button type="button" class="pill" id="calPrev">←</button>
@@ -91,28 +74,24 @@
         </div>
       </div>
     </section>
-    <section id="events" style="padding-top:0">
+    <section id="find">
       <div class="wrap">
-        <div class="section-head"><h2>Yoga-type events</h2></div>
-        <div class="events" id="eventGrid"></div>
-      </div>
-    </section>
-    <section id="how">
-      <div class="wrap">
-        <div class="section-head"><h2>How the Norwich pilot works</h2></div>
-        <div class="how">
-          <article class="step"><div class="num">01</div><h3>We map the city</h3><p data-i="how_1"></p></article>
-          <article class="step"><div class="num">02</div><h3>Teachers list free</h3><p data-i="how_2"></p></article>
-          <article class="step"><div class="num">03</div><h3>A small fee after</h3><p data-i="how_3"></p></article>
+        <div class="section-head"><h2>Find a class</h2></div>
+        <div class="filters">
+          <input id="q" type="search" placeholder="Search teacher, studio or postcode" />
+          <select id="type"></select>
+          <select id="area"></select>
         </div>
+        <div class="filter-pills" id="pills"></div>
+        <p class="muted" style="margin-bottom:12px"><span id="count"></span> listings</p>
+        <div class="grid" id="cards"></div>
       </div>
     </section>
+    <section id="events"><div class="wrap"><div class="section-head"><h2>Events</h2></div><div class="events" id="eventGrid"></div></div></section>
+    <section id="how"><div class="wrap"><div class="section-head"><h2>How the Norwich pilot works</h2></div><div class="how"><article class="step"><div class="num">01</div><h3>We map the city</h3><p data-i="how_1"></p></article><article class="step"><div class="num">02</div><h3>Teachers list free</h3><p data-i="how_2"></p></article><article class="step"><div class="num">03</div><h3>A small fee after</h3><p data-i="how_3"></p></article></div></div></section>
     <section id="list">
-      <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
-        <div>
-          <h2>Claim or add a listing</h2>
-          <p class="muted">Free for three months from the day you join the pilot.</p>
-        </div>
+      <div class="wrap">
+        <h2>Claim or add a listing</h2>
         <form class="form" id="listForm">
           <input required name="name" placeholder="Name" />
           <input required type="email" name="email" placeholder="Email" />
@@ -125,8 +104,8 @@
       </div>
     </section>
   </main>
-  <footer><div class="wrap foot"><div><strong>Flow NR</strong><p>Norwich pilot concept.</p></div><p>Norwich pilot · 2026</p></div></footer>
-  <script src="app.js"></script>
-  <script src="month-cal.js"></script>
+  <footer><div class="wrap foot"><strong>Flow NR</strong><p>Norwich pilot · 2026</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/gh/brownep77/flownr-pilot@dd2adf5/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/brownep77/flownr-pilot@dd2adf5/month-cal.js"></script>
 </body>
 </html>
