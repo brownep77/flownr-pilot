@@ -31,16 +31,16 @@ function renderCalendar() {
     const iso = toISO(d);
     const inMonth = d.getMonth() === month;
     const slots = slotsOnDate(d);
-    const extra = slots.length > 3 ? `<div class="more-slots">+${slots.length - 3} more</div>` : "";
-    const shown = slots.slice(0, 3).map(s => `<span class="slot"><strong>${s.time}</strong> ${s.title}</span>`).join("");
-    cells.push(`<div class="day-cell${inMonth?"":" out"}${iso===selectedISO?" on":""}${iso===todayISO?" today":""}" data-iso="${iso}"><div class="day-num">${d.getDate()}</div>${shown}${extra}</div>`);
+    const shown = slots.slice(0, 2).map(s => `<span class="slot">${s.time}</span>`).join("");
+    const extra = slots.length > 2 ? `<span class="more-slots">+${slots.length - 2}</span>` : "";
+    cells.push(`<button type="button" class="day-cell${inMonth?"":" out"}${iso===selectedISO?" on":""}${iso===todayISO?" today":""}" data-iso="${iso}"><span class="day-num">${d.getDate()}</span><span class="day-slots">${shown}${extra}</span></button>`);
   }
   grid.innerHTML = heads + cells.join("");
   const selected = new Date(selectedISO + "T12:00:00");
   const rows = slotsOnDate(selected);
   const label = selected.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
   table.innerHTML = `<thead><tr><th>${label}</th><th>Class</th><th>Where</th><th></th></tr></thead><tbody>` +
-    (rows.length ? rows.map(c => `<tr><td class="when">${c.time}</td><td><strong>${c.title}</strong><div class="meta">${c.style}</div></td><td>${c.place}</td><td><a class="more" href="${c.url}" target="_blank" rel="noopener">Book →</a></td></tr>`).join("") : `<tr><td colspan="4" class="meta">No public slot pinned for this day yet.</td></tr>`) +
+    (rows.length ? rows.map(c => `<tr><td class="when">${c.time}</td><td><strong>${c.title}</strong> · ${c.style}</td><td>${c.place}</td><td><a class="more" href="${c.url}" target="_blank" rel="noopener">Book →</a></td></tr>`).join("") : `<tr><td colspan="4" class="meta">No public slot pinned for this day yet.</td></tr>`) +
     `</tbody>`;
 }
 document.getElementById("monthGrid")?.addEventListener("click", e => {
